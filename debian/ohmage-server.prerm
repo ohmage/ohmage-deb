@@ -1,0 +1,44 @@
+#! /bin/sh
+
+set -e
+
+case "$1" in
+  remove | abort-install)
+    :
+	service tomcat7 stop || true
+	service apache2 stop || true
+	a2dismod ssl || true
+	a2dismod proxy_ajp || true
+	a2dissite ohmage || true
+	patch -R -N /etc/tomcat7/server.xml /opt/ohmage/install/enable-tomcat-ajp.patch || true
+
+	bash /opt/ohmage/install/wipe.aws.db.sh || true
+	rm -Rf /opt/ohmage/userdata/images/*
+	rm -Rf /opt/ohmage/userdata/documents/*
+	rm -Rf /opt/ohmage/userdata/videos/*
+	rm -Rf /opt/ohmage/logs/*	
+    ;;
+  purge | disappear | abort-upgrade)
+    :
+    ;;
+  upgrade)  
+    :
+    # uncomment to disable upgrades
+	# echo "ohmage-server could not be upgraded. If you want to run a newer version, remove and reinstall".
+	# exit 1
+    ;;
+failed-upgrade)
+    :
+    # uncomment to disable upgrades
+	# exit 1
+    ;;
+  *) echo "$0: didn't understand being called with \`$1'" 1>&2
+     exit 1;;
+esac
+
+#DEBHELPER#
+
+exit 0
+
+
+
