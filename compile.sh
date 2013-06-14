@@ -18,7 +18,7 @@ rm ohfrontend.zip
 mv cens-ohmageFrontEnd* ohfrontend
 
 #hack to change log file location
-sed -i 's/\/opt\/ohmage\/logs\/ohmage.log/\/var\/log\/ohmage\/ohmage.log/g' ohserver/web/WEB-INF/classes/log4j.properties
+sed -i 's/\/opt\/ohmage\/logs\/ohmage.log/\/var\/log\/ohmage\/ohmage.log/g' ohserver/web/WEB-INF/properties/log4j.properties
 
 #create dir that will contain .war files
 mkdir -p warfiles
