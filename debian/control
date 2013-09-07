@@ -7,7 +7,7 @@ Standards-Version: 3.9.3
 
 Package: ohmage-server 
 Architecture: all
-Depends: patch, ssl-cert, mysql-server, tomcat7, apache2
+Depends: patch, ssl-cert, mysql-server, tomcat7, apache2, openjdk-7-jre
 Description: Ohmage server with mobilize frontend.
 
 Package: ohmage-selfreg
